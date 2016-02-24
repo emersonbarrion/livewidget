@@ -1,0 +1,29 @@
+﻿<!-- Left Navigation Menu -->
+<section class="left-nav {{mode}}">
+
+    <section class="row">
+        <div class="column">
+            <ul class="phase-filters tabs" ng-init="phase = 0">
+                <li ng-click="applyPhaseFilter(0)" ng-class="{ selected: phase === 0 }">All Events</li>
+                <li ng-click="applyPhaseFilter(2)" ng-class="{ selected: phase === 2 }">Live</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="row">
+        <div class="column">
+            <ul class="date-filters tabs" ng-init="hoursAmount = null">
+                <li ng-click="applyDateFilter(null)" ng-class="{ selected: hoursAmount === null }">All</li>
+                <li ng-click="applyDateFilter(2)" ng-class="{ selected: hoursAmount === 2 }">2h</li>
+                <li ng-click="applyDateFilter(24)" ng-class="{ selected: hoursAmount === 24 }">24h</li>
+                <li ng-click="applyDateFilter(2000)" ng-class="{ selected: hoursAmount === 2000 }">2000h</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="row">
+        <catalogue-list tree="tree" phaseFilter="phase" hoursAmountFilter="hoursAmount" class="column"></catalogue-list>
+    </section>
+
+</section>
+<!--/ Left Navigation Menu -->

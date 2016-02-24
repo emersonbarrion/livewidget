@@ -1,0 +1,31 @@
+﻿<div class="stream">
+    <!--iframe ng-if="!(isLoading||isError)" ng-src="{{url}}" height="100%" width="100%" frameborder="0" scrolling="no"></iframe>
+    <iframe ng-if="!(isLoading||isError)" ng-src="{{url}}" height="100%" width="100%" frameborder="0" scrolling="no"></iframe-->
+
+    <iframe id="datastream" ng-if="streamData.streamType === 2 && !(isLoading||isError)" ng-src="{{url}}" height="100%" width="100%" frameborder="0" scrolling="no"></iframe>
+    <div id="performstream" ng-if="streamData.providerId === 1 && streamData.streamType === 1 && !(isLoading||isError)" height="100%" width="100%" frameborder="0" scrolling="no"></div>
+    <div id="sportsmanstream" ng-if="streamData.providerId === 2 && streamData.streamType === 1 && !(isLoading||isError)" height="100%" width="100%" frameborder="0" scrolling="no"></div>
+
+    <swf-object
+        swf-url="/templates/sportsbook/streams/PerformLivePlayer.swf"
+        swf-vars="{
+            flashvars: flashvars
+        }"
+        swf-params="{
+            width: '100%',
+            height: '100%',
+            version: '10.2',
+            quality: 'high',
+            menu: 'false',
+            scale: 'showAll',
+            allowFullscreen: 'false',
+            allowScriptAccess: 'always',
+            bgcolor: '#000000',
+            id: 'StreamPlayer',
+            name: 'StreamPlayer',
+            align: 'middle'
+        }"></swf-object>
+
+    <div class="loading" ng-if="isLoading">LOADING...</div>
+    <div class="stream" ng-if="isError" ng-click="reload()">{{errorMessage}}</div>
+</div>

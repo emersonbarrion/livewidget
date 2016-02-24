@@ -1,0 +1,55 @@
+﻿// font-face fonts
+// see http://compass-style.org/docs/reference/compass/css3/font_face/
+
+@mixin font-face($name, $font-files, $eot: false, $weight: false, $style: false) {
+  $iefont: unquote("#{$eot}?#iefix");
+  @font-face {
+    font-family: quote($name);
+    @if $eot {
+      src: font-url($eot);
+      $font-files: font-url($iefont) unquote("format('embedded-opentype')"), $font-files;
+    }
+    src: $font-files;
+    @if $weight {
+      font-weight: $weight;
+    }
+    @if $style {
+      font-style: $style;
+    }
+  }
+}
+
+@include font-face("symbols", font-files("symbols/common.fonts.symbols.woff", "symbols/common.fonts.symbols.ttf", "symbols/common.fonts.symbols.svg"), "symbols/common.fonts.symbols.eot");
+/* Fonts Awesome */
+
+.fb-icon-iphone:before {
+    content: "\e01d";
+}
+.fb-icon-support-headset:before {
+    content: "\e608";
+}
+.fb-icon-bubble:before {
+    content: "\e064";
+}
+.fb-icon-user-menu:before {
+    content: "\e04e";
+}
+.fb-icon-user:before {
+    content: "\e025";
+}
+.fb-icon-logout:before {
+    content: "\e609";
+}
+.fb-icon-email:before {
+    content: "\e022";
+}
+.fb {
+    font-family: 'symbols';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    line-height: 1em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

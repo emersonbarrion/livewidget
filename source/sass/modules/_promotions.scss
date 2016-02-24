@@ -1,0 +1,44 @@
+﻿.banner {
+    display:block;
+    width:100%;
+
+    text-align:center;
+    text-shadow: 1px 1px 2px black;
+    vertical-align:middle;
+
+    .banner-container {
+        line-height:20px;
+        min-height: 150px;
+        color:white;
+
+        h1 {
+            font-size:20pt;
+            margin-top: 0;
+            margin-bottom: 5px;
+            line-height: 24pt;
+            color: white;
+        }
+
+        .banner-selections {
+            line-height: 2.2rem;
+            padding: 6px 0;
+
+            .banner-selection {
+                border: 1px solid white;
+                margin: 5px;
+                padding: 5px;
+            }
+        }
+    }
+
+    .promotion {
+        width: 100%;
+        min-height: 150px;
+        display: table;
+
+        a {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+}

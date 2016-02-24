@@ -1,0 +1,90 @@
+﻿/**
+ * jQuery.winnerlist - Winner list display plugin for jQuery
+ *
+ * Version history------------------------------------------------
+ * Version  Date            Note        Author
+ * 1.0.0    2010-08-18      Created     toal2
+ * 1.1.0    2010-08-18      Modified     tohe
+ *
+ * @version 1.1.0 (2010-06-18)
+**/
+
+(function ($) {
+
+
+    var firefoxVersionWithFixForAbsolutePositioning = 30;
+
+    function isFirefox() {
+        return $.browser.mozilla && navigator.userAgent.toLowerCase().indexOf("firefox") >= 0;
+    }
+
+    function getBrowserMajorVersion() {
+        var majorVersionMatch = $.browser.version.match(/^([0-9]+)\.[0-9,\.]*$/);
+
+        if (majorVersionMatch && majorVersionMatch.length > 1) {
+            return parseInt(majorVersionMatch[1]) < 30;
+        } else {
+            return null;
+        }
+    }
+
+    $.extend({
+        dropdown: {
+            bind: function (me, target) {
+                $(me).bind("click", { dropdown: target }, this._onfocus);
+                $("body").bind("click", this._onblur);
+            },
+            unbind: function (me) {
+                $(me).unbind("click", this._onfocus);
+                $("body").unbind("click", this._onblur);
+            },
+            _onblur: function (e) {
+                var $target = $(e.target);
+                var isDropDownClicked = $target.hasClass('dropdown-toggle') || ($target.parents('.dropdown-toggle').length > 0);
+                if (!isDropDownClicked && $(".dropdown-container").is(":visible")) {
+                    if (!$target.parents('.dropdown-item').length) {
+                        $('.dropdown-container').fadeOut("fast");
+                        $('.dropdown-item').find('i.fa-angle-up').removeClass('fa-angle-up').addClass("fa-angle-down");
+                    }
+                }
+            },
+            _onfocus: function (e) {
+                
+                var $dropdown = $(e.data.dropdown);
+
+                if ($dropdown.is(":hidden")) {
+
+                    // Hide all the other containers
+                    $('.dropdown-container').fadeOut("fast");
+                    $('.dropdown-item').find('i.fa-angle-up').removeClass('fa-angle-up').addClass("fa-angle-down");
+
+                    var leftValue = 0;
+                    try {
+                        leftValue = ($dropdown.parent().outerWidth(false) - $dropdown.outerWidth(false)) / 2;
+
+                        var browserMajorVersion = getBrowserMajorVersion();
+                        if (isFirefox() && browserMajorVersion && browserMajorVersion <= firefoxVersionWithFixForAbsolutePositioning) {
+                            leftValue += $dropdown.closest(".dropdown-item").position().left;
+                        }
+                    } catch (e) {
+                        // Do nothing, drop down should be shown even if positioning fails
+                    }
+                    $dropdown.css("left", leftValue);
+
+                    $dropdown.fadeIn("fast");
+                    $dropdown.trigger("dropdown-visible");
+                    $dropdown.closest(".dropdown-item").find('i.fa-angle-down').removeClass('fa-angle-down').addClass("fa-angle-up");
+                } else {
+                    $dropdown.fadeOut("fast");
+                    $dropdown.closest(".dropdown-item").find('i.fa-angle-up').removeClass('fa-angle-up').addClass("fa-angle-down");
+                }
+            }
+        }
+    });
+    $.fn.dropdown = function () {
+        var target = $(this).find('.dropdown-container');
+        var source = $(this).find('.dropdown-toggle');
+        $.dropdown.unbind(source);
+        $.dropdown.bind(source, target);
+    }
+})(jQuery);

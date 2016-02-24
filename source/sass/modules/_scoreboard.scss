@@ -1,0 +1,42 @@
+.scoreboard {
+
+    &.detailed {
+        border: none !important;
+        background-color: $background-alt;
+        color: $text-color-alt;
+        text-align: center;
+        padding: 10px;
+
+        h1 {
+            color: $text-color-alt;
+            font-size: 2rem;
+        }
+
+        .score {
+            color: gold;
+            font-size: 2.5rem;
+        }
+
+        .actions {
+            marquee {
+                div {
+                    display: inline-block;
+                    margin-right: 20px;
+                }
+            }
+        }
+
+        table {
+            margin: 15px auto;
+
+            .player-serving {
+                border-radius: 100%;
+                background-color: gold;
+                width: 15px;
+                height: 15px;
+            }
+        }
+
+    }
+
+}

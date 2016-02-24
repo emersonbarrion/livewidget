@@ -1,0 +1,21 @@
+﻿<div>
+    <section ng-if="hasAvailableStream" class="streaming">
+        <!--stream ng-if="hasVideoStream && currentStream == videoStream" stream="videoStream" session-id="sessionInfo.token" language="'en'" segment="'601'" is-mobile="false"></stream>
+        <stream ng-if="hasVisualizationStream && currentStream == visualizationStream" stream="visualizationStream" session-id="sessionInfo.token" language="'en'" segment="'601'" is-mobile="false"></stream-->
+
+        <stream ng-if="hasVideoStream && currentStream == videoStream" segment="'601'" language="'en'" stream="videoStream" session-id="sessionId" is-mobile="false" stream-width="" stream-only=""></stream>
+        <stream ng-if="hasVisualizationStream && currentStream == visualizationStream" segment="'601'" language="'en'" stream="visualizationStream" session-id="sessionId" is-mobile="false" stream-width="300" stream-only="'true'"></stream>
+
+        <!-- The toggle is only shown if the user has two options. -->
+        <section class="alternatives" ng-if="hasVideoStream && hasVisualizationStream">
+            <!-- The video link will still be shown if the user needs to log in to see it, but can be styled appropriately. -->
+            <!-- Alternative implementations may choose to bring up the login popup instead, or whatever. -->
+            <div class="video" ng-if="canShowVideoStream" ng-class="{'active': currentStream == videoStream }" ng-click="switchTo(videoStream)">Video</div>
+            <div class="video require-auth" ng-if="!canShowVideoStream">Video</div>
+            <div class="visual" ng-class="{'active': currentStream == visualizationStream }" ng-click="switchTo(visualizationStream)">Visual</div>
+        </section>
+    </section>
+    <section ng-if="!hasAvailableStream" class="streaming">
+        <div>Oh dear, we don't appear to have any streams for this event :(</div>
+    </section>
+</div>

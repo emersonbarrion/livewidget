@@ -1,0 +1,22 @@
+<div class="columns statistics">
+    <ul class="tabs" data-tab>
+        <li class="tab-title active"><a href="#table">Table</a></li>
+        <li class="tab-title"><a href="#headToHead">Head to Head</a></li>
+        <li class="tab-title"><a href="#fixtures">Fixtures</a></li>
+        <li class="tab-title"><a href="#standings">Standings</a></li>
+    </ul>
+    <div class="tabs-content">
+        <div class="content active" id="table" ng-show="data.table">
+            <div statistics-table data="data.table"></div>
+        </div>
+        <div class="content" id="headToHead" ng-show="data.headToHead">
+            <div statistics-head-to-head data="data.headToHead"></div>
+        </div>
+        <div class="content" id="fixtures" ng-show="data.fixtures">
+            <div statistics-fixtures data="data.fixtures"></div>
+        </div>
+        <div class="content" id="standings" ng-show="data.standings">
+            <div statistics-standings data="data.standings"></div>
+        </div>
+    </div>
+</div>

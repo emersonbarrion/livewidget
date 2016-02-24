@@ -1,0 +1,34 @@
+﻿<div class="row">
+    <nav ng-cloak class="menu small-12 medium-3 large-2 columns" ui-view="left-navigation" ssk-busy="loading-navigation"></nav>
+
+    <section class="small-12 medium-6 large-8 columns">
+
+        <section class="row">
+            <section class="banner column" market-promotion="'sportsbook.top.banner'"></section>
+        </section>
+        <br/>
+
+        <section class="row">
+            <nav ng-cloak ui-view="breadcrumbs" class="column"></nav>
+        </section>
+        <br />
+
+        <section class="row">
+            <section bsn-search class="column large-6"></section>
+            <live-simulation-control-panel class="column large-6"></live-simulation-control-panel>
+        </section>
+        <br/>
+
+        <!-- Event Section -->
+        <section ng-cloak class="main" ui-view="main-area" ssk-busy="loading-main"></section>
+        <br />
+
+        <article ng-cloak class="row" ui-view="seo-content" ssk-busy="seo-loading"></article>
+
+    </section>
+
+    <aside ng-cloak class="small-12 medium-3 large-2 columns">
+        <section ui-view="bet-slip"></section>
+        <bet-history-button />
+    </aside>
+</div>

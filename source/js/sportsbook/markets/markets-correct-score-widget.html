@@ -1,0 +1,20 @@
+﻿<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Home</th>
+            <th>Draw</th>
+            <th>Away</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in market.selectionChunks">
+                <td ng-repeat="selection in row" ng-class="{'selected': isInCoupon(selection), 'ineligible':!isEligible(selection)}" ng-click="addToBetslip(selection)">
+                    <div ng-if="selection" class="small-6 columns" ng-bind="selection.name"></div>
+                    <div ng-if="selection" class="small-6 columns" bsn-odds="selection.odds"></div>
+                    <div ng-if="!selection" class="small-12 columns">-</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

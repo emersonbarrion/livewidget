@@ -1,0 +1,18 @@
+﻿<div class="menu-wrapper">
+    <span ng-class="{'expand': !node.isExpanded, 'collapse': node.isExpanded}" ng-click="toggleExpanded(node)">
+        <span ng-if="node.isExpanded && !(node.children.length < 1||node.type==='Competition')">-</span>
+    <span ng-if="!node.isExpanded && !(node.children.length < 1||node.type==='Competition')">+</span>
+    </span>
+    <a href="{{node.slug}}" data-type="{{node.type}}" ng-click="toggleExpanded(node, true)">
+        <span class="label" ng-bind-template="{{node.name}}" ng-class="{'expanded':node.isExpanded, 'selected':node.isSelected}"></span>
+        <span ng-class="{'expanded':node.isExpanded, 'selected':node.isSelected}" ng-if="displayCounts[node.type]" ng-bind-template="- ({{displayCounts[node.type] === 'markets' ? node.marketCount + 'M' : node.eventCount + 'E' }})"></span>
+    </a>
+    <!-- <span ng-if="node.type==='Competition'" node='node' favorites-button></span> -->
+    <span ng-if="node.type==='Competition'" class="competition-checkbox">
+        <input id="chk_{{node.id}}" type="checkbox"  ng-model="node.checked" ng-change="toggleCheck(node)" />
+        <label for="chk_{{node.id}}"></label>
+    </span>
+</div>
+<ul class="submenu animate-if" ng-if="node.children.length > 0 && node.isExpanded && node.type != 'Competition'">
+    <li ng-repeat="node in node.children | cataloguePhase:phase | catalogueDateFilter:hoursAmount | orderBy:sortingPredicate" ng-include="'/templates/sportsbook/catalogue/catalogue-list-item.html'"></li>
+</ul>

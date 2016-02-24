@@ -1,0 +1,7 @@
+﻿<div class="menu">
+    <span ng-show="filterResultsIsEmpty">There are no results to be shown</span>
+    <ul favorites-list data="tree.favorites"></ul>
+    <ul>
+        <li ng-repeat="node in tree.prematch | cataloguePhase:phase | catalogueDateFilter:hoursAmount | orderBy:sortingPredicate" ng-include="'/templates/sportsbook/catalogue/catalogue-list-item.html'"></li>
+    </ul>
+</div>

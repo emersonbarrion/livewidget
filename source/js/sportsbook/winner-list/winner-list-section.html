@@ -1,0 +1,15 @@
+<section class="winner-list column">
+    <hr/>
+    <a ng-bind-template="{{ winnerMarketViewModel.categoryNode.name }} Winner Lists" ng-href="{{ winnerMarketViewModel.categoryNode.slug }}"></a>
+
+    <div class="event" ng-repeat="event in winnerMarketViewModel.events">
+        <h5>{{ event.name }}</h5>
+        <section class="column {{ columnLayout }}" ng-init="columnIdx = $index; columnCount = winnerMarketViewModel.layout.length" ng-repeat="columnLayout in winnerMarketViewModel.layout track by $index">
+            <section ng-init="columnSide = ($index % columnCount)" ng-repeat="betGroup in event.betGroups track by betGroup.id">
+                <bsn-winner-market bet-group="betGroup" default-class="winnerMarketViewModel.defaultClass" default-visible-items="winnerMarketViewModel.limit" event="event" icon-hint="winnerMarketViewModel.categoryNode.iconHint" market="market" ng-if="!betGroup.isHeadToHead && columnSide === columnIdx" ng-repeat="market in betGroup.markets track by market.id" title="{{$index}}"></bsn-winner-market>
+                <bsn-winner-market-head-to-head bet-group="betGroup" default-class="winnerMarketViewModel.defaultClass" default-visible-items="winnerMarketViewModel.limit" event="event" icon-hint="winnerMarketViewModel.categoryNode.iconHint" ng-if="betGroup.isHeadToHead && columnSide === columnIdx" title="{{$index}}"></bsn-winner-market-head-to-head>
+            </section>
+        </section>
+    </div>
+
+</section>

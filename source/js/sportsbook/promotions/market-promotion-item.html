@@ -1,0 +1,11 @@
+﻿<div ng-if="banner" style="background-image: url({{ banner.img }});" class="banner-container">
+    <h1 ng-bind-html="banner.content|html"></h1>
+    <div ng-if="banner.meta.event">
+        <div class="banner-event">{{banner.meta.event.name}} - {{banner.meta.market.name}}</div>
+        <div class="banner-selections">
+            <span ng-repeat="selection in banner.meta.market.selections" ng-click="addToBetslip(selection)" ng-class="{'selected': isInCoupon(selection), 'ineligible':!isEligible(selection)}" class="banner-selection">
+                {{selection.name}} (<span bsn-odds="selection.odds"></span>)
+            </span>
+        </div>
+    </div>
+</div>

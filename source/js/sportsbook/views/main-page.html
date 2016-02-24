@@ -1,0 +1,13 @@
+﻿<!-- Main page Section -->
+<section>
+    <a href="/sv">Go to Swedish</a>
+    <a href="/en">Go to English</a>
+    <a href="/en/live">Go to Live</a>
+    <section class="row" bsn-multiple-events-table="startingSoon" bsn-markets-updated-broadcast="'startingSoon-markets-updated'" bsn-configuration="startingSoon.configuration" bsn-limit="startingSoon.limit" bsn-slug="'/en/starting-soon'" bsn-caption="'widget.startingSoon.title'"></section>
+    <hr/>
+    <section class="row" bsn-multiple-events-table="liveMultipleEventsTable" bsn-markets-updated-broadcast="'pageDataLive-markets-updated'" bsn-configuration="liveMultipleEventsTable.configuration" bsn-limit="liveMultipleEventsTable.limit" bsn-state="live" bsn-slug="liveMultipleEventsTable.categoryNode.slug" bsn-caption="liveMultipleEventsTable.categoryNode.name" ng-repeat="liveMultipleEventsTable in liveMultipleEventsTables | orderBy:'popularityRank':true track by liveMultipleEventsTable.categoryNode.id"></section>
+    <section class="row" bsn-multiple-events-table="multipleEventsTable" bsn-markets-updated-broadcast="'homePageMultipleEventsTable-markets-updated'" bsn-configuration="multipleEventsTable.configuration" bsn-limit="multipleEventsTable.limit" bsn-slug="multipleEventsTable.categoryNode.slug" bsn-caption="multipleEventsTable.categoryNode.name" ng-repeat="multipleEventsTable in multipleEventsTables | orderBy:'popularityRank':true track by multipleEventsTable.categoryNode.id"></section>
+    <section class="row" bsn-winner-list-section="winnerList" ng-repeat="winnerList in winnerLists"></section>
+    <ssk-popular ng-if="mostPopular.categoryIds" ids="mostPopular.categoryIds" datasourcename="mostPopularFixedCategoryList" limit="mostPopular.limit"></ssk-popular>
+</section>
+<!-- /Main page Section -->

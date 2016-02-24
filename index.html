@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="sportsbook-app" ng-strict-di>
+
+<head>
+    <title update-seo="title">Bower Demo</title>
+    <meta update-seo="description" name="description" content="" />
+    <meta update-seo="keywords" name="keywords" content="" />
+    <link update-seo="canonical" rel="canonical" href="" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/vendor/vendor.css" />
+    <link rel="stylesheet" href="/dist/sitestack-sportsbook.css" />
+</head>
+
+<body>
+
+<header class="row top-header">
+    <a href="/en" class="column small-3"><figure class="logo"></figure></a>
+    <account-area class="column small-9"></account-area>
+</header>
+
+<div class="sportsbook-page" ssk-loader ui-view>
+</div>
+
+<script src="/vendor/vendor.js" type="text/javascript"></script>
+<script src="/dist/sitestack-sportsbook.js" type="text/javascript"></script>
+<script src="/demo/sitestack-sportsbook-demo.js" type="text/javascript"></script>
+
+</body>
+
+</html>

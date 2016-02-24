@@ -1,0 +1,4 @@
+<a ng-show="showFavoritesButton" ng-click="toggleFavorite(node)">
+	<span ng-if="!node.isFavorite && isReady">Add to Favorites</span>
+	<span ng-if="node.isFavorite && isReady">Remove from Favorites</span>
+</a>

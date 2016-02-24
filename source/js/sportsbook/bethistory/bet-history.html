@@ -1,0 +1,99 @@
+﻿<section ssk-busy="loading-bet-history">
+
+    <span class="bet-history-title" translate>Bet History ({{ totalNumberOfCoupons }})</span>
+
+    <section class="bet-history-input">
+        <div>
+            <label>From Date: </label>
+            <input type="date" ng-model="fromDate" />
+        </div>
+        <div>
+            <label>To Date: </label>
+            <input type="date" ng-model="toDate" />
+        </div>
+        <div>
+            <label>Selected Filter: </label>
+            <select ng-model="selectedBetFilter" ng-options="betFilter.id as (betFilter.translationKey | translate) for betFilter in betFilters"></select>
+        </div>
+        <div>
+            <button ng-click="loadBetHistoryByPage(0)">Reload</button>
+        </div>
+    </section>
+
+    <section class="bet-history">
+        <table>
+            <thead>
+                <tr>
+                    <th>Date & Time</th>
+                    <th>Coupon</th>
+                    <th>Coupon Type</th>
+                    <th>Stake</th>
+                    <th>Total Potential Winnings</th>
+                    <th>Status</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat-start="item in betHistoryItems">
+                    <td ng-bind="item.couponArriveDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                    <td ng-bind="item.couponId"></td>
+                    <td ng-bind="couponTypes[item.details.coupon.couponType]"></td>
+                    <td>
+                        <div ng-bind="item.stake | sskCurrency"></div>
+                        <span ng-if="item.taxAmount > 0" class="taxAmount">(+{{ item.taxAmount | sskCurrency }} tax)</span>
+                    </td>
+                    <td ng-bind="item.details.coupon.potentialWin | sskCurrency"></td>
+                    <td ng-bind-html="item.statusText | translate | html"></td>
+                    <td><button ng-click="toggleDetails(item)">Show/Hide details</button></td>
+                </tr>
+                <tr ng-show="item.showDetails" class="couponDetails" ng-repeat-end>
+                    <td colspan="7">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Bets</th>
+                                    <th>Stake</th>
+                                    <th>Won</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="bet in item.details.coupon.bets">
+                                    <td>
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th translate>Date & Time</th>
+                                                    <th translate>Event</th>
+                                                    <th translate>Betgroup</th>
+                                                    <th translate>Odds</th>
+                                                    <th translate>Result</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="selection in bet.selections">
+                                                    <td ng-bind="selection.market.deadline | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                                                    <td ng-bind="selection.market.event.name"></td>
+                                                    <td ng-bind="selection.market.betGroup.name"></td>
+                                                    <td ng-bind="selection.odds"></td>
+                                                    <td ng-bind-html="item.statusText | translate | html"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td ng-bind="bet.stake | sskCurrency"></td>
+                                    <td ng-bind="bet.payout | sskCurrency"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="bet-history-pages">
+        <label>Page:</label>
+        <select ng-model="selectedPage" ng-change="loadBetHistoryByPage(selectedPage)" ng-options="page for page in pages"></select>
+    </section>
+
+</section>

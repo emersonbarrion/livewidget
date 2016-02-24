@@ -1,0 +1,8 @@
+﻿<span ng-if="activeCompetition" node='activeCompetition' favorites-button></span>
+<div>
+    Games starting within:
+    <button ng-repeat="timespan in timespans" ng-bind="timespan.label" ng-click="filterDataByTimespan(timespan.value)"></button>
+</div>
+<section class="row" bsn-multiple-events-table="multipleEventsTable" bsn-state="live" bsn-markets-updated-broadcast="'pageDataLive-markets-updated'" bsn-events-added-broadcast="'pageDataLive-added'" bsn-events-removed-broadcast="'pageDataLive-deleted'" bsn-configuration="competitionLiveEvents.configuration" bsn-limit="multipleEventsTable.limit" bsn-slug="multipleEventsTable.competitionNode.slug" bsn-category="multipleEventsTable.categoryNode" bsn-competition="multipleEventsTable.categoryNode.id" bsn-caption="multipleEventsTable.categoryNode.name" ng-repeat="multipleEventsTable in liveMultipleEventTables | orderBy:'popularityRank':true track by multipleEventsTable.categoryNode.id"></section>
+<section class="row" bsn-multiple-events-table="multipleEventsTable" bsn-markets-updated-broadcast="'pageData-markets-updated'" bsn-events-added-broadcast="'pageData-added'" bsn-events-removed-broadcast="'pageData-deleted'" bsn-category="multipleEventsTable.categoryNode" bsn-competition="multipleEventsTable.competitionNode" bsn-configuration="multipleEventsTable.configuration" bsn-limit="multipleEventsTable.limit" bsn-slug="multipleEventsTable.competitionNode.slug" bsn-caption="multipleEventsTable.competitionNode.name" ng-repeat="multipleEventsTable in prematchMultipleEventTables | orderBy:'popularityRank':true track by multipleEventsTable.competitionNode.id"></section>
+<section class="row" bsn-winner-list-section="winnerList" ng-repeat="winnerList in prematchWinnerLists"></section>

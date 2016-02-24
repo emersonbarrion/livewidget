@@ -1,0 +1,5 @@
+﻿<span class="odds-container" ng-class="{ updated: hasDifference(), more: (odds > oldOdds), less: (odds < oldOdds) }">
+    <span class="odds" ng-bind="odds | number: 2"></span>
+    <span class="difference-indicator" ng-if="hasDifference()"></span>
+</span>
+

@@ -1,0 +1,35 @@
+<div class="winner-market module {{ defaultClass }}" ng-init="isShowingAll = false">
+    <table class="no-vertical-grid-lines selectable table">
+        <thead>
+            <tr>
+                <th scope="column" colspan="{{ betGroup.markets.length > 0 ? (betGroup.markets[0].selections.length) : 1 }}">
+                    <h5 class="bet-group-title">{{ betGroup.name }}</h5>
+                    <div class="muted">{{ 'winner-market.deadline' | translate }} {{ market.deadline | date: 'dd/MM/yyyy' }}</div>
+                    <div class="muted">{{ market.text }}</div>
+                    <div class="muted">{{ betGroup.text }}</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="market in visibleMarkets = getVisibleItems(betGroup.markets, isShowingAll) track by market.id">
+                <td ng-repeat="selection in market.selections | orderBy: 'originalObj.sortOrder' track by selection.id"
+                    ng-click="toggleSelection(selection)">
+                    <div>
+                        <div>
+                            {{ selection.originalObj.name }}
+                        </div>
+                        <div class="text-right" ng-class="{ selected: isInCoupon(selection), eligible: isEligible(selection) }" bsn-odds="selection.originalObj.odds"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot ng-hide="betGroup.markets.length <= defaultVisibleItems || visibleMarkets.length === getVisibleItems(betGroup.markets, !isShowingAll).length">
+            <tr>
+                <td class="toggle" colspan="2" ng-click="isShowingAll = !isShowingAll">
+                    {{ (isShowingAll ?'winner-market.show-less' : 'winner-market.show-more') | translate:{ count: (betGroup.markets.length - visibleSelections.length) } }}
+                    <i class="icon icon-arrow8-down" ng-class="isShowingAll ? 'icon-arrow8-up' : 'icon-arrow8-down'"></i>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

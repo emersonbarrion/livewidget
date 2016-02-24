@@ -1,0 +1,8 @@
+﻿<div ng-repeat="selectionChunk in market.selectionChunks">
+    <ul class="selections small-12">
+        <li class="columns large-{{12/betGroupGrouping.columns}}" ng-class="{'selected': isInCoupon(selection), 'ineligible':!isEligible(selection)}" ng-click="addToBetslip(selection)" ng-repeat="selection in selectionChunk">
+            <div class="small-6 columns">{{selection.name}}<span ng-if="market.lineValue"> {{market.lineValue}}</span></div>
+            <div class="small-6 columns" bsn-odds="selection.odds"></div>
+        </li>
+    </ul>
+</div>

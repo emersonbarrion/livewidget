@@ -1,0 +1,11 @@
+﻿<section class="container" ssk-resize="1400" ng-class="{ 'live-event-page': marketSelections.isLive }">
+    <section ng-if="marketSelections.isLive" class="row live-section">
+        <div ng-if="event.scoreboard" ng-include="scoreBoard()" class="column small-12 large-6"></div>
+        <div live-stream="event.streams" class="column small-12 large-6"></div>
+    </section>
+    <section class="row">
+        <section ng-repeat="group in (isLargeScreen) ? marketSelections.large : marketSelections.small" class="column {{group.class}}">
+            <div ng-repeat="widget in group.widgets" ng-include="widget.template" test="{{widget.template}}"></div>
+        </section>
+    </section>
+</section>

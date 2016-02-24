@@ -1,0 +1,22 @@
+﻿.odds-container {
+
+    &.updated {
+        font-weight: bold;
+
+        &.less {
+            color: red;
+
+            .difference-indicator:after {
+                content: "\25BC";
+            }
+        }
+
+        &.more {
+            color: green;
+
+            .difference-indicator:after {
+                content: "\25B2";
+            }
+        }
+    }
+}

@@ -1,0 +1,52 @@
+﻿header.top-header {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+
+    .logo {
+        margin: 0;
+        background-image: url(http://i.stack.imgur.com/uTouv.png);
+        background-repeat: no-repeat;
+        background-position: -10px;
+        width: 198px;
+        height: 52px;
+
+        a {
+            display: block;
+            line-height: 50px;
+            text-decoration: none;
+        }
+    }
+
+    .account-area {
+
+        form {
+            float: right;
+            padding: 10px;
+
+            & > div {
+                display: inline-block;
+                margin-right: 5px;
+
+                input {
+                    padding: 5px;
+                    border: 1px solid #999;
+                }
+            }
+
+            button {
+                padding: 5px 15px;
+            }
+        }
+
+        .logged-in {
+            float: right;
+            padding: 10px;
+        }
+    }
+
+    &:after {
+        display: block;
+        content: " ";
+        clear: both;
+    }
+}

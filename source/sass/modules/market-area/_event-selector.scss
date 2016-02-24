@@ -1,0 +1,94 @@
+﻿.events {
+
+    .label {
+        color : #404040;
+    }
+
+    ul {
+        border: 1px solid #ACDDAD
+    }
+
+    span.title {
+        background-color: #009104;
+        color: #ffffff;
+        font-style: italic;
+        text-transform: uppercase;
+        padding: 0 10px 0 10px;
+        line-height: 25px;
+        font-weight: bold;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        letter-spacing: 1px;
+        width: 100%;
+        display: inline-block;
+        margin-top: 10px;
+    }
+}
+
+ul.events {
+
+    li {
+        &:hover {
+            background-color:#e5e5e5;
+        }
+
+        &:nth-child(odd) {
+            background-color: #fafafa;
+        }
+
+        &:nth-child(even) {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            padding: 10px 7px;
+            line-height: 30px;
+        }
+    }
+}
+
+.current-event {
+    margin: 10px 0;
+    
+    * {
+        color :#404040;
+    }
+
+    h4 {
+        background-color: #ffffff;
+        padding: 10px;
+    }
+
+    p {
+        padding: 10px;
+        background-color: #f0f0f0;
+    }
+
+    &.active h4 {
+        background-color: #A9C43D; 
+        color: #ffffff;
+    }
+}
+
+ul.markets li
+{
+    float: left;
+    background-color: #ffffff;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.selections {
+    li {
+        padding: 15px;
+        border: 1px solid #f0f0f0;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #f0f0f0;
+        }
+    }
+
+    .odds {
+        float: right;
+    }
+}

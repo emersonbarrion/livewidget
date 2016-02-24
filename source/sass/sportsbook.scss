@@ -1,0 +1,34 @@
+﻿// Here's where we define some default constants
+@import "partials/base";
+
+// Or, you can import the "overrides" partial if
+// you want more control over individual mixins
+//@import "partials/overrides";
+
+// Finally, put your own styles in these partials
+// and add more as needed (i.e. forms, tables, nav)
+@import "partials/colours";
+@import "partials/fonts";
+@import "partials/page";
+@import "partials/flags";
+@import "partials/search";
+@import "partials/odds";
+
+@import "mixins/vendor/eqjs/eq.scss";
+
+// Add modules which should be included in this css file
+@import "modules/header";
+@import "modules/betslip";
+@import "modules/betgroups";
+@import "modules/category-navigation-selector";
+@import "modules/market-area/event-selector.scss";
+@import "modules/market-area/event-section.scss";
+@import "modules/market-area/multiple-events-table.scss";
+@import "modules/menu-navigator";
+@import "modules/history";
+@import "modules/promotions";
+@import "modules/statistics";
+@import "modules/winner-list";
+@import "modules/scoreboard";
+
+@import "modules/component-overlays";

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+    <metadata>
+        <id>sitestack-sportsbook</id>
+        <version>1.0.0</version>
+        <title>Sitestack Sportsbook</title>
+        <authors>Betsson</authors>
+        <owners>Betsson</owners>
+        <description>The first fully angular sportsbook</description>
+        <releaseNotes>sitestack-sportsbook 1.0.0</releaseNotes>
+        <copyright>Copyright 2015</copyright>
+    </metadata>
+    <files>
+        <file src="build\**\*.*" />
+    </files>
+</package>

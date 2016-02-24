@@ -1,0 +1,6 @@
+﻿<section class="search-results markets">
+    <h2>Search results for <span class="search-term" ng-bind="term"></span></h2>
+    <section class="row" bsn-state="live" bsn-multiple-events-table="multipleEventsTable" bsn-markets-updated-broadcast="'pageDataLive-markets-updated'" bsn-caption="multipleEventsTable.categoryNode.name" bsn-configuration="multipleEventsTable.configuration" bsn-limit="multipleEventsTable.configuration.limit" bsn-view="competition" ng-repeat="multipleEventsTable in liveMultipleEventTables"></section>
+    <section class="row" bsn-multiple-events-table="multipleEventsTable" bsn-markets-updated-broadcast="'pageData-markets-updated'" bsn-caption="multipleEventsTable.categoryNode.name" bsn-configuration="multipleEventsTable.configuration" bsn-limit="multipleEventsTable.configuration.limit" bsn-view="competition" ng-repeat="multipleEventsTable in prematchMultipleEventTables"></section>
+    <section class="row" bsn-winner-list-section="winnerList" ng-repeat="winnerList in prematchWinnerLists"></section>
+</section>

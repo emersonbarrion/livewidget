@@ -1,0 +1,39 @@
+<section class="manual attest" ng-if="isVisible">
+
+	<hr/>
+
+	<h4 ng-bind-html="'betslip.manual-attest.manual-attest-title' | translate | html" />
+
+	<div ng-if="bet">
+		<h5 ng-bind-template="{{selection.eventName}}" />
+		<span class="slip-type" ng-bind-template="{{ 'Selection' | translate }}: {{selection.name}}"></span><span ng-bind-template=" - {{selection.marketName}} "></span>
+	</div>
+
+	<ul class="options">
+		<li ng-if="allowResubmitAllowedStake">
+			<label for="resubmitAllowedStakeOnly">
+				<i ng-bind-html="'betslip.manual-attest.resubmit-allowed-value'| translate:{allowed:allowedStake, currency:currency} | html"></i>
+				<input type="radio" ng-model="command.action" value="resubmitAllowedStakeOnly" id="resubmitAllowedStakeOnly"/>
+			</label>
+		</li>
+
+		<li ng-if="allowResubmitAllowedStakeAndRestForManualReview">
+			<label for="resubmitAllowedStakeAndSendRestForManualReview">
+				<i ng-bind-html="'betslip.resubmit-allowed-valueand-send-rest-for-manual-review'| translate:{allowed:allowedStake, stakeForReview: valueToAttest, currency:currency, selection:selection.eventName} | html"></i>
+				<input type="radio" ng-model="command.action" value="resubmitAllowedStakeAndSendRestForManualReview" id="resubmitAllowedStakeAndSendRestForManualReview"/>
+			</label>
+		</li>
+
+		<li ng-if="allowResubmitAllForManualReview">
+			<label for="resubmitAllForReview">
+				<i ng-bind-html="'betslip.resubmit-all-for-review'| translate:{stake:stake, currency:currency}| html"></i>
+				<input type="radio" ng-model="command.action" value="resubmitAllForReview" id="resubmitAllForReview"/>
+			</label>
+		</li>
+	</ul>
+
+	<div>
+		<button ng-click="close()" ng-bind-html="'betslip.manual-attest.cancel'| translate| html" />
+		<button ng-click="submit()" ng-disabled="command.action === ''" ng-bind-html="'betslip.manual-attest.submit'| translate| html" />
+	</div>
+</section>

@@ -1,0 +1,60 @@
+<section class="multiple-events-table-section column small-12" data-eq-pts="small: 400, medium: 600, large: 750, xlarge: 900, xxlarge: 1000">
+
+    <table class="multiple-events-table table" ng-class="{ 'live-table': isLive }" ng-show="eventRows && eventRows.length > 0">
+        <thead>
+            <tr>
+                <th colspan="3">
+                    <a ng-bind-template="{{ (isLive) ? 'Live ' + caption : caption }}" ng-href="{{slug}}"></a>
+                </th>
+                <th class="show-for-column-{{$index + 1}}-up text-center betgroup" ng-repeat="header in headers track by header.betGroupId">
+                    <div>
+                        <div ng-bind="header.name "></div>
+                    </div>
+                    <div>
+                        <div class="columns small-{{ 12 / header.selectionHeaders.length }}" ng-bind=" selectionHeader.name " ng-repeat="selectionHeader in header.selectionHeaders"></div>
+                    </div>
+                </th>
+                <th scope="column"/>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="eventRow in eventRows | limitTo: (showAll || limit < 0) ? eventRows.length : limit | orderBy: 'startDateTime' track by eventRow.id" ng-class="{ 'has-on-hold-markets': eventRow.hasOnHoldMarkets }" ng-if="isLive == eventRow.originalEvent.isLive">
+                <td>
+                    <div class="text-center">
+                        <div ng-if="isLive && eventRow.originalEvent.scoreboard" ng-include="scoreBoard(eventRow)" ng-init="scoreboard=eventRow.originalEvent.scoreboard"></div>
+                        <div ng-bind="eventRow.startDateTime | amCalendar"></div>
+                    </div>
+                </td>
+                <td>
+                    <a class="event-name" ng-bind="eventRow.name" ng-href="{{eventRow.slug}}"></a>
+                    <div class="stats" ng-show="eventRow.showStats">
+                        <div data="eventRow.statistics" statistics-event></div>
+                    </div>
+                </td>
+                <td class="events">
+                    <div ng-show="eventRow.liveEvent && eventRow.eventPhase !== 2">LIVE</div>
+                    <div ng-show="eventRow.liveStream">STREAM</div>
+                    <div data-test="{{eventRow.competitionNode.externalId}}" ng-click="getStats(eventRow)" ng-show="eventRow.hasStats">STATS</div>
+                </td>
+                <td class="show-for-column-{{$index + 1}}-up text-center betgroup" ng-repeat="marketCell in eventRow.marketCells track by marketCell.header.betGroupId">
+                    <div class="market-selections">
+                        <div class="line-value" ng-bind="marketCell.lineValue" ng-show="marketCell.lineValue"></div>
+                        <div class="selectable market-selection" ng-class="{ 'selected': isInCoupon(selection), 'ineligible':!isEligible(selection), 'onhold': selection.isOnHold }" ng-click="addToBetslip(selection)" ng-repeat="selection in marketCell.selections | orderBy :'sortOrder'">
+                            <span bsn-odds="selection.odds"></span>
+                        </div>
+                    </div>
+                </td>
+                <td class="text-center remaining-markets">
+                    <div>
+                        <div class="{{'show-for-column-' + ($index + 1) + (($index + 1 === eventRow.marketCells.length)? '-up' : '-only' )}}" ng-init="remaining = getRemainingMarkets($index, eventRow)" ng-repeat="marketCell in eventRow.marketCells">
+                            <a ng-bind-template="+{{ remaining }}" ng-href="{{eventRow.slug}}"></a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="toggle show-more" ng-bind-html="showAll ? 'event.widget.show-less' : 'event.widget.show-more' | translate:{ count: (eventRows.length - limit) } | html" ng-click="toggle()" ng-show="(limit > 0) && (eventRows.length > limit)"></div>
+
+</section>

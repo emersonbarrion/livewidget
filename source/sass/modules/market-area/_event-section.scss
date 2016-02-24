@@ -1,0 +1,141 @@
+﻿@import "../../partials/colours";
+
+@media (max-width: 780px) {
+    .container {
+        width: 100%;
+        -ms-column-count: 1;
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+    }
+}
+
+.live-section {
+    padding-bottom: 20px;
+}
+
+.primary, .secondary {
+    text-align: center;
+}
+
+.selected {
+    font-weight:bold;
+    color: $primary;
+}
+
+.ineligible {
+    color: #333;
+    background-color:#DDD;
+}
+
+.selections {
+    line-height: 20px;
+
+    &:after {
+        content: '';
+        clear: both;
+        display: block;
+        margin-bottom: 1em;
+    }
+
+    li {
+        border: 1px solid black;
+    }
+
+    .odds {
+        font-weight: bold;
+    }
+}
+
+.widget {
+    font-size: 10pt;
+    margin-bottom: 1em;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    -o-column-break-inside: avoid;
+    -ms-column-break-inside: avoid;
+    column-break-inside: avoid;
+
+    .onhold {
+        background-color: orangered;
+    }
+
+    &:after {
+        content: '';
+        clear: both;
+        display: block;
+    }
+
+    > h1 {
+        font-size: 14pt;
+        font-weight: 100;
+        color: white;
+        background-color: $primary;
+        margin: 0;
+        margin-bottom: 1em;
+        padding: 0.5em;
+        text-align: left;
+    }
+    h2 {
+        font-size: 12pt;
+        font-weight: 100;
+        color: $primary;
+        margin: 0;
+        text-align: left;
+    }
+}
+
+.toggle{
+    background-color: $primary;
+    color: white;
+
+    &:hover{
+        background-color:lighten($primary, 30%);
+    }
+}
+
+.head-to-head {
+    & .head-to-head-market {
+        border: 1px solid black;
+
+        & .odds {
+            font-weight: bold;
+        }
+    }
+}
+
+.live-event-page {
+
+    .widget {
+        background-color:$background-alt;
+        h1 {
+            background-color: $primary-alt;
+        }
+
+        .market {
+           padding: 0 2em;
+           color: $text-color-alt;
+
+        h2 {
+            color: $primary-alt;
+        }
+    }
+
+    .selections {
+        li {
+                background-color: $background-alt-lighter;
+                color: $text-color-tertiary;
+                border: 1px solid $text-color-tertiary;
+
+                &.selected {
+                        color:$text-color-alt;
+                    }
+
+                &.ineligible {
+                    background-color: $warning-color;
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}

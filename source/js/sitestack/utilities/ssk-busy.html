@@ -1,0 +1,6 @@
+﻿<div class='component overlay loader' ng-class="{ 'waiting': isWaiting, 'busy': isBusy }" ng-show='isBusy || isWaiting'></div>
+<div class="component overlay error" ng-show="hasError">
+    <span ng-bind-html="errorMessage|translate|html"></span>
+    <a href="#" class="retry" ng-show="retryFn" ng-click="retryFn()">{{ 'sportsbook.busy.retry'|translate }}</a>
+    <a href="#" class="dismiss" ng-hide="noDismiss" ng-click="hasError = false">{{ 'sportsbook.busy.dismiss'|translate }}</a>
+</div>

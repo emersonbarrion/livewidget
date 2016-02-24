@@ -1,0 +1,7 @@
+<section class="live-lobby">
+    <a href="/sv">Go to Swedish</a>
+    <a href="/en">Go to English</a>
+    <a href="/live">Go to Live</a>
+
+    <section class="row" bsn-multiple-events-table="liveMultipleEventsTable" bsn-markets-updated-broadcast="'pageDataLive-markets-updated'" bsn-configuration="liveMultipleEventsTable.configuration" bsn-limit="liveMultipleEventsTable.configuration.limit" bsn-state="live" bsn-slug="liveMultipleEventsTable.categoryNode.slug" bsn-caption="liveMultipleEventsTable.categoryNode.name" ng-repeat="liveMultipleEventsTable in liveMultipleEventsTables | orderBy:'popularityRank':true track by liveMultipleEventsTable.categoryNode.id"></section>
+</section>

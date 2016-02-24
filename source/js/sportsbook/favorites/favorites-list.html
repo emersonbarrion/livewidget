@@ -1,0 +1,12 @@
+﻿<ul ng-repeat="node in data">
+    <li>
+        <a href="{{node.slug}}" data-type="{{node.type}}">
+            <span class="label" ng-bind-template="{{node.name}}" ng-class="{'expanded':node.isExpanded, 'selected':node.isSelected}"></span>
+            <span ng-class="{'expanded':node.isExpanded, 'selected':node.isSelected}" ng-if="displayCounts[node.type]" ng-bind-template="- ({{displayCounts[node.type] === 'markets' ? node.marketCount + 'M' : node.eventCount + 'E' }})"></span>
+        </a>
+        <span class="competition-checkbox">
+	        <input id="chk_{{node.id}}" type="checkbox"  ng-model="node.checked" ng-change="toggleCheck(node)" />
+	        <label for="chk_{{node.id}}"></label>
+    	</span>
+    </li>
+</ul>

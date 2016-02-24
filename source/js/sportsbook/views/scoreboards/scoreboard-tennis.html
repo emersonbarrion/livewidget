@@ -1,0 +1,32 @@
+<div class="scoreboard detailed">
+
+    <section class="row">
+        <div class="column">
+            <h1>{{ event.name }}</h1>
+        </div>
+    </section>
+
+    <section class="row">
+        <div class="column phase">{{ event.scoreboard.currentPhase.text }}</div>
+    </section>
+
+    <section class="row">
+        <div class="column">
+            <table class="score-container">
+                <tr ng-repeat="participant in event.scoreboard.participants">
+                    <th>
+                        {{ participant.name }}
+                    </th>
+                    <td>
+                        <div ng-if="isParticipantServing(participant.id)" class="player-serving">&nbsp;</div>
+                        <div ng-if="!isParticipantServing(participant.id)">&nbsp;</div>
+                    </td>
+                    <td ng-repeat="setPoint in event.scoreboard.stats.gamePoints[participant.id].byPhase"
+                        ng-class="{'winner': vm.isWinner($index,event.scoreboard.stats.gamePoints, participant.id, setPoint, event.scoreboard.participants)}">
+                        {{setPoint}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+</div>

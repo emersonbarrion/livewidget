@@ -1,0 +1,13 @@
+<div>
+    <label>Category ID: </label>
+    <input type="text" ng-model="categoryToFilter" />
+    <input type="button" ng-click="setCategory(categoryToFilter)" value="Filter" />
+</div>
+
+<section class="row"
+         bsn-multiple-events-table="prematchMultipleEventTables"
+         bsn-markets-updated-broadcast="'pageData-markets-updated'"
+         bsn-configuration="prematchMultipleEventTables.configuration"
+         bsn-limit="prematchMultipleEventTables.configuration.limit"
+         bsn-slug="prematchMultipleEventTables.categoryNode.slug"
+         bsn-caption="prematchMultipleEventTables.categoryNode.name"></section>

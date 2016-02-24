@@ -1,0 +1,38 @@
+﻿.component.overlay {
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    right:0;
+    display:block;
+
+    min-height:100px;
+
+    &.loader {
+        background-image: url(/images/icons/ajax-loader.gif);
+        background-position:center;
+        background-repeat:no-repeat;
+
+        &.busy {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        &.waiting {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+    }
+
+    &.error {
+        color: rgba(30, 0, 0, 1);
+        background-color: rgba(255, 0, 0, 0.5);
+        text-align:center;
+    }
+
+	.retry{
+        color: rgba(30, 0, 0, 1);
+	}
+
+	.dismiss{
+        color: rgba(30, 0, 0, 1);
+	}
+}

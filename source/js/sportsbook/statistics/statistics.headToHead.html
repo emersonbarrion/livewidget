@@ -1,0 +1,29 @@
+<section>
+    <h5>Head to Head</h5>
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    Date
+                </td>
+                <td>
+                    Home
+                </td>
+                <td></td>
+                <td>
+                    Away
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="event in data">
+                <td ng-bind="event.date | amCalendar"></td>
+                <td ng-bind="event.homeName"></td>
+                <td>
+                    <span ng-bind-template="{{event.homeScore}} - {{event.awayScore}}"></span>
+                </td>
+                <td ng-bind="event.awayName"></td>
+            </tr>
+        </tbody>
+    </table>
+</section>

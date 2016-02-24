@@ -1,0 +1,20 @@
+<div class="account-area">
+    <form id="loginForm" ng-show="!isLoggedIn">
+        <div>
+            <label for="tbUsername">Email: </label>
+            <input type="text" id="tbUsername" maxlength="255" autocomplete="on" required ng-model="loginSubmitModel.username" />
+        </div>
+        <div>
+            <label for="tbPassword">Password:  </label>
+            <input type="password" id="tbPassword" maxlength="255" autocomplete="off" required ng-model="loginSubmitModel.password" />
+        </div>
+
+        <button type="submit" value="Login" ng-click="accountArea.login()">Login</button>
+        <div ng-show="responseErrorMessage"><span>{{responseErrorMessage}}</span></div>
+        <div class="loginprogress fa fa-circle-o-notch fa-spin" ng-show="progressIndicatorVisible"></div>
+    </form>
+    <section ng-show="isLoggedIn" class="logged-in">
+        <span><b>User Logged In:</b> {{ userLoggedInModel.fullName }}</span>
+        <a href="#" ng-click="logout()"> Logout </a>
+    </section>
+</div>

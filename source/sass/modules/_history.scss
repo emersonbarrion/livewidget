@@ -1,0 +1,59 @@
+﻿@import "../partials/colours";
+
+.bet-history-title {
+    display: inline-block;
+    padding: 10px;
+    background-color: $primary;
+    color: $text-color-alt;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing: 1px;
+}
+
+.bet-history-input {
+    background-color: #f5f5f5;
+    color: $text-color;
+    border: solid 1px #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+
+    & > div {
+        display: inline-block;
+        margin-right: 10px;
+    }
+}
+
+.bet-history {
+    margin-bottom: 10px;
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 0;
+
+        tr {
+            border-bottom: solid 1px #ddd;
+
+            td {
+                .taxAmount {
+                    color: $warning-color;
+                    white-space: nowrap;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        tr.couponDetails {
+            background: #AAAAAA;
+        }
+    }
+}
+
+.bet-history-pages {
+    margin-top: 25px;
+
+    label, select {
+        display: inline-block;
+        width: auto;
+    }
+}

@@ -1,0 +1,121 @@
+<section class="coupon-container betslip" ssk-busy="placing-bet">
+
+    <h1 ng-bind-html=" 'betslip.main-tab.betslip'| translate | html "></h1>
+
+    <ul class="bet-types tabs">
+        <li class="bet-type single" ng-bind-html=" 'betslip.coupon-type.single' | translate | html " ng-class="{selected: viewModel.type === couponTypes.single}" ng-click="switchType(couponTypes.single)"></li>
+        <li class="bet-type combi" ng-bind-html=" 'betslip.coupon-type.combination' | translate | html " ng-class="{selected: viewModel.type === couponTypes.combi}" ng-click="switchType(couponTypes.combi)"></li>
+        <li class="bet-type system" ng-bind-html=" 'betslip.coupon-type.system' | translate | html " ng-class="{selected: viewModel.type === couponTypes.system}" ng-click="switchType(couponTypes.system)"></li>
+    </ul>
+
+    <div class="betslip-container">
+
+        <div ng-show='couponBonus'>
+            <div ng-repeat="bonus in couponBonus">
+                <input name="bonus-checkbox" ng-change="toggleBonus(bonus)" ng-model="bonus.isSelected" type='checkbox'/>{{bonus.originalBonus.stake}}
+                {{bonus.originalBonus.bonusType}}
+            </div>
+        </div>
+
+        <ul>
+            <li ng-repeat="selectionViewModel in viewModel.selections | orderDictionaryBy:'betslipOrder':true">
+                <div class="event-slip" ng-class="{ error: showError(selectionViewModel.id) }">
+                    <p>
+                        <span ng-bind="selectionViewModel.eventName"></span>
+                    </p>
+                    <p>
+                        <span class="slip-type" ng-bind-template="Selection: {{selectionViewModel.name}}"></span>
+                        <span ng-bind-template="vs {{selectionViewModel.opponentName}}" ng-if="selectionViewModel.opponentName"></span>
+                        <span ng-bind-template=" - {{selectionViewModel.marketName}} "></span>
+                        <div class="right">
+                            <span>Odds</span>&nbsp;
+                            <span bsn-odds="selectionViewModel.odds"></span>
+                        </div>
+                    </p>
+                    <p>
+                        <div ng-show="viewModel.type === couponTypes.single">
+                            <span ng-bind-html="'betslip.stake'| translate:{currency:currencyCode} | html "></span>
+                            <input ng-model="viewModel.bets[selectionViewModel.id].stake" type="text"/>
+                        </div>
+                        <button ng-click="removeSelection(selectionViewModel.originalSelection)">X</button>
+                    </p>
+                </div>
+            </li>
+        </ul>
+
+        <div class="inner-container">
+
+            <section ng-if="viewModel.containsLiveSelection">
+                <label for="acceptCombiOddsChanges">
+                    {{ 'betslip.accept-odds-changes' | translate | html }}
+                    <input id="acceptCombiOddsChanges" ng-change="saveAcceptOddChanges()" ng-model="acceptOddsChanges" type="checkbox"/>
+                </label>
+            </section>
+
+            <section ng-if="viewModel.type === couponTypes.system">
+                <ul>
+                    <li ng-repeat="bet in viewModel.bets">
+                        <label>
+                            {{'betslip.stake'| translate:{currency:currencyCode} | html }}
+                            -
+                            {{bet.combinations.length}}x{{bet.selectionsPerCombination}}
+                            <input ng-disabled="!bet.stakeEnabled" ng-model="bet.stake" type="text"/>
+                        </label>
+                        <div class="combinations">
+                            <div class="combination" ng-repeat="combination in bet.combinations">
+                                <div class="selection" ng-init="selectionViewModel = viewModel.selections[selectionId]" ng-repeat="selectionId in combination.selectionIds">
+                                    <span class="slip-type" ng-bind-template="Selection: {{selectionViewModel.name}}"></span>
+                                    <span ng-bind-template=" - {{selectionViewModel.marketName}} "></span>
+                                    <div class="right">
+                                        <span>Odds:</span>&nbsp;
+                                        <b ng-bind="selectionViewModel.odds | number: 2"></b>
+                                    </div>
+                                </div>
+                                <span ng-bind-template="{{ 'betslip.total-odds'| translate }}: {{combination.totalOdds | number: 2}}" ng-if="combination.selectionIds.length > 1"></span>
+                            </div>
+                        </div>
+                        <div class="clear: both"></div>
+                    </li>
+                </ul>
+            </section>
+
+            <section ng-if="viewModel.type !== couponTypes.single">
+                <label>Stake: <input ng-model="viewModel.stake" type="text" /></label>
+            </section>
+
+            <section>
+                <label>Total Stake:
+                    <i>{{ viewModel.totalStake | sskCurrency }}</i>
+                </label>
+                <label>Tax Rate:
+                    <i>{{ viewModel.taxRate * 100 | number:0 }}%</i>
+                </label>
+                <label>Total Effective Stake:
+                    <i>{{ viewModel.totalEffectiveStake | sskCurrency }}</i>
+                </label>
+                <label>Total Odds:
+                    <i>{{ viewModel.totalOdds }}</i>
+                </label>
+                <label>Potential Winnings:
+                    <span ng-bind="viewModel.totalPotentialWin | sskCurrency"></span>
+                </label>
+            </section>
+
+            <section ng-if="errorMessages.length > 0" class="errors">
+                <div ng-repeat="error in errorMessages">
+                    <div ng-bind-html="error.key | translate:error.parameters | html"></div>
+                    <button ng-click="depositNow()" ng-show="error.options.showDepositButton">Deposit Now</button>
+                    <button ng-click="contactCustomerSupport()" ng-show="error.options.showCustomerSupportButton">Go To Customer Support</button>
+                    <button ng-click="goToMyAccount()" ng-show="error.options.showMyAccountButton">Go To My Account</button>
+                </div>
+            </section>
+
+            <section class="submitCoupon" ng-if="viewModel.numberOfSelections > 0">
+                <button class="button" ng-bind-html=" 'betslip.place-bet'| translate | html " ng-click="submitCoupon()" ng-disabled="!couponState.valid"></button>
+            </section>
+
+            <div manual-attest />
+
+        </div>
+    </div>
+</section>

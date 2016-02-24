@@ -1,0 +1,35 @@
+<section>
+    <h5>Standings</h5>
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    Pos.
+                </td>
+                <td>
+                    TEAM
+                </td>
+                <td>
+                    GP
+                </td>
+                <td>
+                    PTS
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in data.rows | orderBy: 'pos'">
+                <td ng-bind="row.pos"></td>
+                <td ng-bind="row.team.name"></td>
+                <td ng-bind="row.total.gp"></td>
+                <td ng-bind="row.total.w"></td>
+                <td ng-bind="row.total.d"></td>
+                <td ng-bind="row.total.l"></td>
+                <td ng-bind="row.total.gf"></td>
+                <td ng-bind="row.total.ga"></td>
+                <td ng-bind="row.total.gd"></td>
+                <td ng-bind="row.total.pts"></td>
+            </tr>
+        </tbody>
+    </table>
+</section>

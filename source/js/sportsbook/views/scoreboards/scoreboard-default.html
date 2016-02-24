@@ -1,0 +1,52 @@
+﻿<section class="scoreboard detailed">
+
+    <section class="row name">
+        <div class="column">
+            <h1>{{ event.name }}</h1>
+        </div>
+    </section>
+
+    <section class="row">
+        <div class="large-4 medium-4 small-4 home column score" ng-bind-html="event.scoreboard.score[event.scoreboard.participants[0].id].total|html"></div>
+        <div class="large-4 medium-4 small-4 time column">
+            <div class="row phase" ng-bind-html="event.scoreboard.currentPhase.text|html"></div>
+            <div class="row clock" ng-if="event.scoreboard.matchClock">
+                {{event.scoreboard.matchClock.minutes}}:{{event.scoreboard.matchClock.seconds}}
+            </div>
+        </div>
+        <div class="large-4 medium-4 small-4 away column score" ng-bind-html="event.scoreboard.score[event.scoreboard.participants[1].id].total|html"></div>
+    </section>
+
+    <section class="actions row">
+        <marquee class="column">
+            <div ng-repeat="action in event.scoreboard.actions">{{action.name}}</div>
+        </marquee>
+    </section>
+
+    <section class="row statistics">
+        <div class="column">
+            <table>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>C</th>
+                    <th>G</th>
+                    <th>S</th>
+                    <th>R</th>
+                    <th>Y</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="participant in event.scoreboard.participants">
+                    <th ng-bind-html="participant.name|html"></th>
+                    <td ng-bind-html="event.scoreboard.stats.corners[participant.id].total|html"></td>
+                    <td ng-bind-html="event.scoreboard.score[participant.id].total|html"></td>
+                    <td ng-bind-html="event.scoreboard.stats.substitutions[participant.id].total|html"></td>
+                    <td ng-bind-html="event.scoreboard.stats.redCards[participant.id].total|html"></td>
+                    <td ng-bind-html="event.scoreboard.stats.yellowCards[participant.id].total|html"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>

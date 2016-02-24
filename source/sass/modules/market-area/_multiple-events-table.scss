@@ -1,0 +1,186 @@
+.multiple-events-table-section {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 1em;
+
+    .multiple-events-table {
+        margin: 0;
+        font-size: 0.75rem;
+        border-collapse: collapse;
+
+        th,
+        td {
+            font-size: inherit;
+        }
+
+        &.table {
+            width: 100%;
+
+            .has-on-hold-markets {
+                background-color: #666;
+            }
+
+            .event-name {
+                // white-space: nowrap;
+            }
+
+            .market-selections {
+                white-space: nowrap;
+
+                .market-selection {
+                    display: inline-block;
+                    min-width: 40px;
+                    border: 1px solid lightgrey;
+                }
+
+                .onhold,
+                .line-value {
+                    @extend .market-selection;
+                    background-color: darkgrey;
+                }
+            }
+        }
+
+        &.live-table {
+            border: none;
+
+            thead tr {
+                background-color: white;
+                border: none;
+                th {
+                    color: black;
+                    border: none;
+                }
+            }
+
+            tbody tr {
+                background-color: #333;
+
+                td {
+                    color: #ddd;
+
+                    &:first-child {
+                        border-left: 3px solid $primary-alt;
+
+                        a {
+                            font-size: 120%;
+                        }
+                    }
+
+                    a {
+                        color: #ddd;
+                    }
+
+                    &:last-child {
+
+                        a {
+                            color: $primary-alt;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .show-more {
+        display: inline-block;
+        padding: 0.5em;
+    }
+
+    .show-for-column-1-up,
+    .show-for-column-2-up,
+    .show-for-column-3-up,
+    .show-for-column-4-up,
+    .show-for-column-5-up {
+        display: none;
+    }
+
+    .show-for-column-1-only,
+    .show-for-column-2-only,
+    .show-for-column-3-only,
+    .show-for-column-4-only,
+    .show-for-column-5-only {
+        display: none;
+    }
+
+    @include eq('small') {
+        .show-for-column-1-up,
+        .show-for-column-1-only {
+            display: table-cell;
+        }
+
+        .show-for-column-2-only,
+        .show-for-column-3-only,
+        .show-for-column-4-only,
+        .show-for-column-5-only {
+            display: none;
+        }
+    }
+
+    @include eq('medium') {
+        .show-for-column-1-up,
+        .show-for-column-2-up,
+        .show-for-column-2-only {
+            display: table-cell;
+        }
+
+        .show-for-column-1-only,
+        .show-for-column-3-only,
+        .show-for-column-4-only,
+        .show-for-column-5-only {
+            display: none;
+        }
+    }
+
+    @include eq('large') {
+        .show-for-column-1-up,
+        .show-for-column-2-up,
+        .show-for-column-3-up,
+        .show-for-column-3-only {
+            display: table-cell;
+        }
+
+        .show-for-column-1-only,
+        .show-for-column-2-only,
+        .show-for-column-4-only,
+        .show-for-column-5-only {
+            display: none;
+        }
+    }
+
+    @include eq('xlarge') {
+        .show-for-column-1-up,
+        .show-for-column-2-up,
+        .show-for-column-3-up,
+        .show-for-column-4-up,
+        .show-for-column-4-only {
+            display: table-cell;
+        }
+
+        .show-for-column-1-only,
+        .show-for-column-2-only,
+        .show-for-column-3-only,
+        .show-for-column-5-only {
+            display: none;
+        }
+    }
+
+    @include eq('xxlarge') {
+        .show-for-column-1-up,
+        .show-for-column-2-up,
+        .show-for-column-3-up,
+        .show-for-column-4-up,
+        .show-for-column-5-up,
+        .show-for-column-5-only {
+            display: table-cell;
+        }
+
+        .show-for-column-1-only,
+        .show-for-column-2-only,
+        .show-for-column-3-only,
+        .show-for-column-4-only {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,12 @@
+<section class="widget markets">
+    <h1 ng-bind-html=" widget.title | translate | html "></h1>
+    <div ng-repeat="betGroupGrouping in widget.betGroupGroupings" class="row">
+        <section ng-repeat="market in betGroupGrouping.markets" ng-class="{ 'onhold': market.originalMarket.isOnHold }" class="column market">
+            <h2 ng-if="market.name" ng-bind-html="market.name | html "></h2>
+            <div ng-if="market.text" ng-bind-html="market.text | html"></div>
+            <div ng-if="market.betGroup.text" ng-bind-html="market.betGroup.text | html" class="text"></div>
+
+            <div ng-include="market.template" />
+        </section>
+    </div>
+</section>

@@ -1,0 +1,31 @@
+﻿{
+    "bundles": [{
+        "id": "site.modules.js.bundle",
+        "type": "js",
+        "output": "/build/dist/sitestack-sportsbook.js",
+        "paths": [{
+            "path": "/source/js/sitestack/sitestack.modules.js"
+        }, {
+            "path": "/source/js/sitestack/**/*.js"
+        }, {
+            "path": "/source/js/sportsbook/application/sportsbook.js"
+        }, {
+            "path": "/source/js/sportsbook/**/*.js"
+        }, {
+            "path": "/build/temp/compiled/sportsbook.js"
+        }]
+    }, {
+        "id": "site.modules.test.js.bundle",
+        "type": "js",
+        "output": "/build/test/sitestack-sportsbook-test.js",
+        "paths": [{
+            "path": "/source/test/helpers/**/*.js"
+        }, {
+            "path": "/source/test/js/data/**/*.js"
+        }, {
+            "path": "/source/test/js/specs/**/*.js"
+        }, {
+            "path": "/source/test/acceptance/**/*.js"
+        }]
+    }]
+}

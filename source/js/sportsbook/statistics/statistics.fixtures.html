@@ -1,0 +1,36 @@
+<section>
+    <h5>Fixtures</h5>
+    <ul>
+        <li ng-repeat="item in data">
+            <table>
+                <thead>
+                    <tr>
+                        <td colspan="4" ng-bind-template="participant: {{item.name}}"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Date
+                        </td>
+                        <td>
+                            Home
+                        </td>
+                        <td></td>
+                        <td>
+                            Away
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="event in item.events">
+                        <td ng-bind="event.date | amCalendar"></td>
+                        <td ng-bind="event.homeName"></td>
+                        <td>
+                            <span ng-bind-template="{{event.homeScore}} - {{event.awayScore}}"></span>
+                        </td>
+                        <td ng-bind="event.awayName"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </li>
+    </ul>
+</section>
