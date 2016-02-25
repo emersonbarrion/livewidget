@@ -102,7 +102,7 @@
             return self.stream;
         }
 
-        var service = {
+        return {
             getstream: self.getstream
         };
 
