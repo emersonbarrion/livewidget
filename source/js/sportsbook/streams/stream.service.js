@@ -13,12 +13,12 @@
 
     streamService.$inject = ['$http','$interpolate', 'streamApi'];
 
-    function streamService($http, $interpolate, streamApi) {
+    function streamService($http, $interpolate, streamApi, $sce) {
         /*jshint validthis: true */
         var self = this;
 
         /*
-        Request interface
+        Request Interface
          "segment"
          "language"
          "streamType"
@@ -30,6 +30,20 @@
          "streamWidth"
          "streamOnly"
          */
+
+        // Response Interface
+        self.stream = {
+            url: "",
+            params: {
+                eventId: "",
+                key: "",
+                userId: "",
+                partnerId: ""
+            },
+            providerId: "",
+            streamType: "",
+            errorMessage: ""
+        };
 
 
         function getstream(params){
@@ -44,29 +58,28 @@
                 }
             };
 
-            return $http.get(url, configuration).then(function(response){
-                return self.getStreamResponse(response, params);
-            });
+            return $http.get(url, configuration)
+                .then(function(response){
+                    return self.getStreamResponse(response, params);
+                })
+                .catch(function(reason){
+                    return self.stream.errorMessage = reason.data.Errors[0].Message;
+                });
         }
 
         function getStreamResponse(response, params){
-            // Standard response
-            var stream = {
-                url: response.data.lu,
-                params: {},
-                providerId: params.provider,
-                streamType: params.streamType,
-                errorMessage: ""
-            };
+            self.stream.url = $sce.trustAsResourceUrl(response.data.lu);
+            self.stream.providerId = params.provider;
+            self.stream.streamType = params.streamType;
 
             // Adding error response
             if(response.data.Errors){
-                stream.errorMessage = response.data.Errors[0].Message;
+                self.stream.errorMessage = response.data.Errors[0].Message;
             }
 
             // Perform Video stream required parameter
             if(params.provider === 1 && params.streamType === 1){
-                stream.params = {
+                self.stream.params = {
                     eventId: params.eventId,
                     key: response.data.k,
                     userId: params.sessionId,
@@ -76,8 +89,8 @@
 
             // Perform Data Visualization required parameter
             if(params.provider === 1 && params.streamType === 2){
-                stream.url = stream.url + "?width=" + params.streamWidth + "&token=" + response.data.k + "&ismobile=" + params.isMobile + "&lang=" + params.language + "&streamonly=" + params.streamOnly;
-                stream.params = {
+                self.stream.url = $sce.trustAsResourceUrl(self.stream.url + "?width=" + params.streamWidth + "&token=" + response.data.k + "&ismobile=" + params.isMobile + "&lang=" + params.language + "&streamonly=" + params.streamOnly);
+                self.stream.params = {
                     width: params.streamWidth,
                     token: response.data.k,
                     isMobile: params.isMobile,
@@ -86,7 +99,7 @@
                 };
             }
 
-            return stream;
+            return self.stream;
         }
 
         var service = {
